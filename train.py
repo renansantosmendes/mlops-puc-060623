@@ -79,11 +79,12 @@ def config_mlflow():
 
 def train_model(model, X_train, y_train):
     with mlflow.start_run(run_name='experiment_01') as run:
-      model.fit(X_train, y_train, epochs=20, validation_split=0.2, verbose=3)
+      model.fit(X_train, y_train, epochs=10, validation_split=0.2, verbose=3)
 
 
 if __name__ == '__main__':
     reset_seeds()
+    config_mlflow()
     data = read_data()
     X_train, X_test, y_train, y_test = prepare_data(data)
     model = create_model(X_train.shape[1])

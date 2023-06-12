@@ -79,7 +79,7 @@ def config_mlflow():
 
 def train_model(model, X_train, y_train):
     with mlflow.start_run(run_name='experiment_01') as run:
-      model.fit(X_train, y_train, epochs=10, validation_split=0.2, verbose=3)
+      model.fit(X_train, y_train, epochs=100, validation_split=0.2, verbose=3)
 
 
 if __name__ == '__main__':

@@ -6,7 +6,28 @@ on:
     - branch_01
 
 jobs:
-  train_pipeline:
+  test_source_code:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.9
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Test Files
+        run: |
+          python -m pytest -vv test_train.py
+
+  train_model:
       runs-on: ubuntu-latest
       steps:
           - uses: actions/checkout@v1
